@@ -12,6 +12,11 @@ fruit.shapesize(4)
 fruit.fillcolor("red")
 fruit.speed(6)
 score = 0
+score_writer = trtl.Turtle()
+score_writer.penup()
+score_writer.goto(0,-300)
+score_writer.pendown()
+score_writer.speed(4)
 
 #-----initialize turtle-----
 
@@ -19,14 +24,15 @@ score = 0
 
 #-----game functions--------
 def fruit_clicked(x, y):
-    change_position()    
-    update_score()
+    change_position()   
+    update_score() 
+    score_writer.write(score, font=font_setup)
 
 def change_position():
     fruit.penup()
     fruit.hideturtle()
     new_xcor = rand.randint(-400, 400)
-    new_ycor = rand.randint(-300, 300)
+    new_ycor = rand.randint(-200, 300)
     fruit.goto(new_xcor, new_ycor)
     fruit.pendown()
     fruit.showturtle()
@@ -34,32 +40,19 @@ def change_position():
 def update_score():
     global score
     score += 1
+    score_writer.clear()
+    score_writer.write(score, font=font_setup)
     print(score)
-
-
-
-
-
-#-----events----------------
-fruit.onclick(fruit_clicked)
-
-
-
-wn = trtl.Screen()
-wn.mainloop()
-    new_ycor = rand.randint(-300, 300)
-    fruit.goto(new_xcor, new_ycor)
-    fruit.pendown()
-    fruit.showturtle()
-
-
-
-
-#-----events----------------
-fruit.onclick(fruit_clicked)
-
     
 
+def font_setup():
+    ("Arial", 20, "normal")
+
+
+
+
+#-----events----------------
+fruit.onclick(fruit_clicked)
 
 
 
