@@ -35,16 +35,17 @@ timer_up = False
 def fruit_clicked(x, y):
     change_position()   
     update_score() 
+    countdown()
     score_writer.write(score, font=font_setup)
-
+        
 def change_position():
     fruit.penup()
     fruit.hideturtle()
-    new_xcor = rand.randint(-400, 400)
-    new_ycor = rand.randint(-200, 200)
-    fruit.goto(new_xcor, new_ycor)
-    fruit.pendown()
-    fruit.showturtle()
+    if not timer_up:
+      fruitx = rand.randint(-400,400)
+      fruity = rand.randint(-200,200)
+      fruit.goto(fruitx,fruity)
+      fruit.st()
 
 def update_score():
     global score
@@ -63,6 +64,7 @@ def countdown():
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
     counter.getscreen().ontimer(countdown, counter_interval) 
+
 
 
 
